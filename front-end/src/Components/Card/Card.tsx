@@ -20,7 +20,7 @@ const Card: React.FC<Props> = ({ id, companyModel, onPortfolioCreate }: Props): 
       <h2 className="font-bold text-center text-black md:text-left">
         {name} ({symbol})
       </h2>
-      <p className="text-black">{currency}</p>
+      <p className="mx-5 text-black uppercase">{currency}</p>
       <p className="font-bold text-black">
         {exchangeShortName} - {stockExchange}
       </p>

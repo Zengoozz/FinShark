@@ -46,12 +46,13 @@ function App(): JSX.Element {
       setPortfolioValues(updatedValues);
    };
 
-   const onPortfolioDelete = (portfolioValue: string) => {
-      var updatedPortfolioValues = portfolioValues.filter(
-         (portfolio) => portfolio !== portfolioValue
-      );
-      setPortfolioValues(updatedPortfolioValues);
-   };
+   const onPortfolioDelete = (e: any) => {
+      e.preventDefault();
+      const removed = portfolioValues.filter((value) => {
+        return value !== e.target[0].value;
+      });
+      setPortfolioValues(removed);
+    };
 
    return (
       <div className="m-5">

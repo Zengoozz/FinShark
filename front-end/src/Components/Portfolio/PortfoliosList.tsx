@@ -1,9 +1,10 @@
+import { SyntheticEvent } from "react";
 import CardPortfolio from "./CardPortfolio";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
    portfolioValues: string[]; // List<string>
-   onPortfolioDelete: (portfolioValue: string) => void;
+   onPortfolioDelete: (e: SyntheticEvent) => void;
 }
 
 const PortfoliosList: React.FC<Props> = ({
@@ -24,7 +25,7 @@ const PortfoliosList: React.FC<Props> = ({
                            <CardPortfolio
                               key={uuidv4()}
                               portfolioValue={portfolio}
-                              onPortfolioDelete={() => onPortfolioDelete(portfolio)}
+                              onPortfolioDelete={onPortfolioDelete}
                            />
                         </span>
                      );
