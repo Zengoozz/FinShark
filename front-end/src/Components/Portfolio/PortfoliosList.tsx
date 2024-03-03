@@ -1,5 +1,5 @@
 import { SyntheticEvent } from "react";
-import CardPortfolio from "./CardPortfolio";
+import PortfolioCard from "./PortfolioCard";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
@@ -21,13 +21,11 @@ const PortfoliosList: React.FC<Props> = ({
                {portfolioValues.length > 0 ? (
                   portfolioValues.map((portfolio) => {
                      return (
-                        <span className="flex flex-col items-center">
-                           <CardPortfolio
+                           <PortfolioCard
                               key={uuidv4()}
                               portfolioValue={portfolio}
                               onPortfolioDelete={onPortfolioDelete}
                            />
-                        </span>
                      );
                   })
                ) : (
