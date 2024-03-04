@@ -1,7 +1,8 @@
 import { SyntheticEvent } from "react";
 import { CompanySearch } from "../../Types/Company";
 import AddPortfolio from "../Portfolio/AddPortfolio";
-
+import { Link } from "react-router-dom";
+// Link name to companyPage-- preparing reactRouter ☑
 interface Props {
    id: string;
    companyModel: CompanySearch;
@@ -17,9 +18,9 @@ const Card: React.FC<Props> = ({ id, companyModel, onPortfolioCreate }: Props): 
       key={id}
       id={id}
     >
-      <h2 className="font-bold text-center text-black md:text-left">
+      <Link to={`/company/${symbol}`} className="font-bold text-center text-black md:text-left">
         {name} ({symbol})
-      </h2>
+      </Link>
       <p className="mx-5 text-black uppercase">{currency}</p>
       <p className="font-bold text-black">
         {exchangeShortName} - {stockExchange}
