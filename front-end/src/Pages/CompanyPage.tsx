@@ -4,10 +4,18 @@
 // async function in useEffect must be called after --use Effect ☑
 // conditional rendering to see if it actually have value --use Effect ☑
 
+// Add Dashboard -- Dashboard ☑
+// Add Sidebar and CompanyDashboard -- Dashboard ☑
+
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
+
 import { getCompanyProfile } from "../api";
 import { CompanyProfile } from "../Types/Company";
+
+import Sidebar from "../Components/Company/Sidebar";
+import CompanyDashboard from "../Components/Company/CompanyDashboard";
+import Tile from "../Components/Company/Tile";
 
 interface Props {}
 
@@ -25,7 +33,12 @@ const CompanyPage = (props: Props) => {
    return (
       <>
          {companyProfile ? (
-            <div className="company-profile-container">{companyProfile.companyName}</div>
+            <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+               <Sidebar />
+               <CompanyDashboard>
+                  <Tile title="Company Profile" subtitle={companyProfile.companyName}/>
+               </CompanyDashboard>
+            </div>
          ) : (
             <div>No data found!</div>
          )}
