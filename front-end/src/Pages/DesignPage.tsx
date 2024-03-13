@@ -1,3 +1,4 @@
+import RatioList from "../Components/RatioList";
 import Table from "../Components/Table";
 
 interface Props {}
@@ -13,6 +14,7 @@ const DesignPage = (props: Props) => {
             Table - Table takes in a configuration object and company data as params. Use
             the config to style your table.
          </h3>
+         <RatioList />
          <Table />
       </>
    );
