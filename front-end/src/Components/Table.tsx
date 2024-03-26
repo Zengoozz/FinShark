@@ -1,52 +1,40 @@
 // get testIncomeStatementData -- Table ☑
 
-import { testIncomeStatementData } from "../assets/TestData";
+// remove all configs and adapt the component to be genric ☑
 
-interface Props {}
-const data = testIncomeStatementData;
-
-type Company = (typeof data)[0];
-type Config = {
-   label: string;
-   render: (company: Company) => string;
+type Props = {
+   configs: any;
+   data: any;
 };
 
-const Configs = [
-   {
-      label: "Year",
-      render: (company: Company) => company.acceptedDate,
-   },
-   {
-      label: "Cost of revenue",
-      render: (company: Company) => company.costOfRevenue.toString(),
-   },
-];
-
-const Table = (props: Props) => {
-   const RenderedRows = data.map((company: Company) => (
-      <tr key={company.cik} className="text-left">
-         {Configs.map((config: Config) => (
-            <td className="p-3">{config.render(company)}</td>
+const Table = ({ configs, data }: Props) => {
+   const RenderedRows = data.map((row: any) => (
+      <tr
+         key={row.cik}
+         className="text-left"
+      >
+         {configs.map((config: any) => (
+            <td className="p-3">{config.render(row)}</td>
          ))}
       </tr>
    ));
 
-   const RenderedHeaders = Configs.map((config: Config) => (
+   const RenderedHeaders = configs.map((config: any) => (
       <th
          key={config.label}
-         className="p-3 text-left"
+         className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
       >
          {config.label}
       </th>
    ));
 
    return (
-      <table>
-         <thead>
-            <tr>{RenderedHeaders}</tr>
-         </thead>
-         <tbody>{RenderedRows}</tbody>
-      </table>
+      <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+         <table className="min-w-full divide-y divide-gray-200 m-5">
+            <thead className="bg-gray-50">{RenderedHeaders}</thead>
+            <tbody>{RenderedRows}</tbody>
+         </table>
+      </div>
    );
 };
 

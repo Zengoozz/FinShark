@@ -40,7 +40,7 @@ export const TestDataCompany = [
    },
 ];
 
-export const testIncomeStatementData = [
+export const TestIncomeStatementData = [
    {
       date: "2022-09-24",
       symbol: "AAPL",

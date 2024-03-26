@@ -1,10 +1,18 @@
 import axios from "axios";
-import { CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./Types/Company";
+import {
+   CompanyIncomeStatement,
+   CompanyKeyMetrics,
+   CompanyProfile,
+   CompanySearch,
+} from "./Types/Company";
+
 
 interface SearchResponse {
    data: CompanySearch[];
 }
 // Create a new method to getCompanyProfile which get CompanyProfile[] --use Effect ☑
+
+// getIncomeStatementMethod CompanyIncomeStatement limit40 --IncomeStatement ☑
 export const searchCompanies = async (query: string) => {
    try {
       const data = await axios.get<SearchResponse>(
@@ -34,10 +42,23 @@ export const getCompanyProfile = async (query: string) => {
 };
 
 export const getKeyMetrics = async (query: string) => {
-   try{
-      const data = await axios.get<CompanyKeyMetrics[]>(`https://financialmodelingprep.com/api/v3/key-metrics-ttm//${query}?apikey=${process.env["REACT_APP_API_KEY"]}`);
+   try {
+      const data = await axios.get<CompanyKeyMetrics[]>(
+         `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${query}?limit=40&apikey=${process.env["REACT_APP_API_KEY"]}`
+      );
       return data;
-   }catch(e: any){
+   } catch (e: any) {
       console.log("error message:", e.message);
    }
-}
+};
+
+export const getIncomeStatement = async (query: string) => {
+   try {
+      const data = await axios.get<CompanyIncomeStatement[]>(
+         `https://financialmodelingprep.com/api/v3/income-statement/${query}?limit=40&apikey=${process.env["REACT_APP_API_KEY"]}`
+      );
+      return data;
+   } catch (e: any) {
+      console.log("error message:", e.message);
+   }
+};
