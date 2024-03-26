@@ -2,6 +2,9 @@
 // Add Link to company-profile and add style for HOME heading and add faHome Icon -- Dashboard ☑
 // do the same as above but for income-statement -- Dashboard ☑
 
+// add a link to balanceSheet --BalanceSheet ☑
+// change icons --BalanceSheet(optional) ☑
+
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 
@@ -30,6 +33,13 @@ const Sidebar = (props: Props) => {
                   >
                      <FaHome />
                      <h6 className="ml-3">Income Statement</h6>
+                  </Link>
+                  <Link
+                     to="balance-sheet"
+                     className="md:min-w-full text-blueGray-500 text-medium uppercase font-bold flex items-center pt-1 pb-4 no-underline"
+                  >
+                     <FaHome />
+                     <h6 className="ml-3">Balance Sheet</h6>
                   </Link>
                </div>
             </div>

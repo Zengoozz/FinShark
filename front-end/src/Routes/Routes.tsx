@@ -3,6 +3,8 @@
 // Create NestedRoutes >> children for CompanyPage for CompanyProfile, IncomeStatement -- Dashboard ☑
 
 // Add Route to design-guide -- Table ☑
+
+// Add Route to balance-sheet --BalanceSheet ☑
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import HomePage from "../Pages/HomePage";
@@ -11,6 +13,7 @@ import CompanyPage from "../Pages/CompanyPage";
 import CompanyProfile from "../Components/Company/CompanyProfile";
 import IncomeStatement from "../Components/Company/IncomeStatement";
 import DesignPage from "../Pages/DesignPage";
+import BalanceSheet from "../Components/Company/BalanceSheet";
 
 export const router = createBrowserRouter([
    {
@@ -40,6 +43,10 @@ export const router = createBrowserRouter([
                {
                   path:"income-statement",
                   element:<IncomeStatement />
+               },
+               {
+                  path:"balance-sheet",
+                  element:<BalanceSheet />
                }
             ]
          },
