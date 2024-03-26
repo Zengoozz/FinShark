@@ -7,6 +7,8 @@
 // Add Dashboard -- Dashboard ☑
 // Add Sidebar and CompanyDashboard -- Dashboard ☑
 
+// add more Tiles to companyDashboard (Price,Sector,DCF) --CashFlowStatement ☑
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -37,6 +39,9 @@ const CompanyPage = (props: Props) => {
                <Sidebar />
                <CompanyDashboard ticker={ticker!}>
                   <Tile title="Company Profile" subtitle={companyProfile.companyName}/>
+                  <Tile title="Price" subtitle={companyProfile.price.toString()}/>
+                  <Tile title="Sector" subtitle={companyProfile.sector}/>
+                  <Tile title="MKTCap" subtitle={companyProfile.mktCap.toString()}/>
                </CompanyDashboard>
             </div>
          ) : (

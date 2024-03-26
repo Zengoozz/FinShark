@@ -5,6 +5,8 @@
 // add a link to balanceSheet --BalanceSheet ☑
 // change icons --BalanceSheet(optional) ☑
 
+// add a link to cashFlowStatement --CashFlowStatement ☑
+
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 
@@ -40,6 +42,13 @@ const Sidebar = (props: Props) => {
                   >
                      <FaHome />
                      <h6 className="ml-3">Balance Sheet</h6>
+                  </Link>
+                  <Link
+                     to="cash-flow-statement"
+                     className="md:min-w-full text-blueGray-500 text-medium uppercase font-bold flex items-center pt-1 pb-4 no-underline"
+                  >
+                     <FaHome />
+                     <h6 className="ml-3">Cash Flow Sheet</h6>
                   </Link>
                </div>
             </div>

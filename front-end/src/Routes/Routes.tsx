@@ -4,7 +4,9 @@
 
 // Add Route to design-guide -- Table ☑
 
-// Add Route to balance-sheet --BalanceSheet ☑
+// Add Route to balance-sheet --BalanceSheet ☑ 
+
+// Add Route to cashflow-statement --CashFlowStatement ☑
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import HomePage from "../Pages/HomePage";
@@ -14,6 +16,7 @@ import CompanyProfile from "../Components/Company/CompanyProfile";
 import IncomeStatement from "../Components/Company/IncomeStatement";
 import DesignPage from "../Pages/DesignPage";
 import BalanceSheet from "../Components/Company/BalanceSheet";
+import CashFlowStatement from "../Components/Company/CashFlowStatement";
 
 export const router = createBrowserRouter([
    {
@@ -47,6 +50,10 @@ export const router = createBrowserRouter([
                {
                   path:"balance-sheet",
                   element:<BalanceSheet />
+               },
+               {
+                  path:"cash-flow-statement",
+                  element:<CashFlowStatement />
                }
             ]
          },
