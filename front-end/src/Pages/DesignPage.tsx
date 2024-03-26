@@ -1,8 +1,16 @@
 import RatioList from "../Components/RatioList";
 import Table from "../Components/Table";
+import { testIncomeStatementData } from "../assets/TestData";
 
 interface Props {}
 
+const Config = [
+   {
+     label: "Market Cap",
+     render: (company: any) => company.marketCapTTM,
+     subTitle: "Total value of all a company's shares of stock",
+   }
+];
 const DesignPage = (props: Props) => {
    return (
       <>
@@ -14,7 +22,7 @@ const DesignPage = (props: Props) => {
             Table - Table takes in a configuration object and company data as params. Use
             the config to style your table.
          </h3>
-         <RatioList />
+         <RatioList data={testIncomeStatementData} config={Config}/>
          <Table />
       </>
    );
