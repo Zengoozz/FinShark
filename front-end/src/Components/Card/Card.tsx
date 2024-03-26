@@ -3,6 +3,8 @@ import { CompanySearch } from "../../Types/Company";
 import AddPortfolio from "../Portfolio/AddPortfolio";
 import { Link } from "react-router-dom";
 // Link name to companyPage-- preparing reactRouter ☑
+
+// edit Link to head to the companyProfile directly --CashFlowStatement ☑
 interface Props {
    id: string;
    companyModel: CompanySearch;
@@ -18,7 +20,7 @@ const Card: React.FC<Props> = ({ id, companyModel, onPortfolioCreate }: Props): 
       key={id}
       id={id}
     >
-      <Link to={`/company/${symbol}`} className="font-bold text-center text-black md:text-left">
+      <Link to={`/company/${symbol}/company-profile`} className="font-bold text-center text-black md:text-left">
         {name} ({symbol})
       </Link>
       <p className="mx-5 text-black uppercase">{currency}</p>
