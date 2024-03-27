@@ -3,6 +3,9 @@ import { CompanyKeyMetrics } from "../../Types/Company";
 import { useEffect, useState } from "react";
 import { getKeyMetrics } from "../../api";
 import RatioList from "../RatioList";
+import Spinner from "../Spinner";
+
+// add Spinner--LoadingSpinner ☑
 
 interface Props {}
 
@@ -87,7 +90,7 @@ const CompanyProfile = (props: Props) => {
                />
             </>
          ) : (
-            <>Loading...</>
+            <Spinner />
          )}
       </>
    );

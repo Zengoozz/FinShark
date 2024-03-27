@@ -9,6 +9,8 @@
 
 // add more Tiles to companyDashboard (Price,Sector,DCF) --CashFlowStatement ☑
 
+// add Spinner--LoadingSpinner ☑
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -18,6 +20,7 @@ import { CompanyProfile } from "../Types/Company";
 import Sidebar from "../Components/Company/Sidebar";
 import CompanyDashboard from "../Components/Company/CompanyDashboard";
 import Tile from "../Components/Company/Tile";
+import Spinner from "../Components/Spinner";
 
 interface Props {}
 
@@ -38,14 +41,26 @@ const CompanyPage = (props: Props) => {
             <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
                <Sidebar />
                <CompanyDashboard ticker={ticker!}>
-                  <Tile title="Company Profile" subtitle={companyProfile.companyName}/>
-                  <Tile title="Price" subtitle={companyProfile.price.toString()}/>
-                  <Tile title="Sector" subtitle={companyProfile.sector}/>
-                  <Tile title="MKTCap" subtitle={companyProfile.mktCap.toString()}/>
+                  <Tile
+                     title="Company Profile"
+                     subtitle={companyProfile.companyName}
+                  />
+                  <Tile
+                     title="Price"
+                     subtitle={companyProfile.price.toString()}
+                  />
+                  <Tile
+                     title="Sector"
+                     subtitle={companyProfile.sector}
+                  />
+                  <Tile
+                     title="MKTCap"
+                     subtitle={companyProfile.mktCap.toString()}
+                  />
                </CompanyDashboard>
             </div>
          ) : (
-            <div>No data found!</div>
+            <Spinner />
          )}
       </>
    );

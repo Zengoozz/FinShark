@@ -6,11 +6,14 @@
 // render data through table --CashFlowStatement ☑
 // add needed props through table component --CashFlowStatement ☑
 
+// add Spinner--LoadingSpinner ☑
+
 import { useOutletContext } from "react-router";
 import { CompanyCashFlow } from "../../Types/Company";
 import { useEffect, useState } from "react";
 import { getCashFlowStatement } from "../../api";
 import Table from "../Table";
+import Spinner from "../Spinner";
 
 const config = [
    {
@@ -67,9 +70,7 @@ const CashFlowStatement = () => {
                />
             </>
          ) : (
-            <>
-               <h1>Loading...</h1>
-            </>
+            <Spinner />
          )}
       </>
    );

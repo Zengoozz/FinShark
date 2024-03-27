@@ -6,11 +6,14 @@
 // render data through RatioList --BalanceSheet ☑
 // add needed props through table component --BalanceSheet ☑
 
+// add Spinner--LoadingSpinner ☑
+
 import { useOutletContext } from "react-router";
 import { CompanyBalanceSheet } from "../../Types/Company";
 import { useEffect, useState } from "react";
 import { getBalanceSheet } from "../../api";
 import RatioList from "../RatioList";
+import Spinner from "../Spinner";
 
 type Props = {};
 
@@ -71,8 +74,7 @@ const config = [
 
 const BalanceSheet = (props: Props) => {
    const ticker = useOutletContext<string>();
-   const [companyBalanceSheet, setCompanyBalanceSheet] =
-      useState<CompanyBalanceSheet>();
+   const [companyBalanceSheet, setCompanyBalanceSheet] = useState<CompanyBalanceSheet>();
    useEffect(() => {
       debugger;
       const getCompantBalanceSheet = async () => {
@@ -93,7 +95,7 @@ const BalanceSheet = (props: Props) => {
             </>
          ) : (
             <>
-               <h1>Company data not found!</h1>
+               <Spinner />
             </>
          )}
       </>

@@ -6,11 +6,14 @@
 // render data through table --IncomeStatement ☑
 // add needed props through table component --IncomeStatement ☑
 
+// add Spinner--LoadingSpinner ☑
+
 import { useOutletContext } from "react-router";
 import { CompanyIncomeStatement } from "../../Types/Company";
 import { useEffect, useState } from "react";
 import { getIncomeStatement } from "../../api";
 import Table from "../Table";
+import Spinner from "../Spinner";
 
 interface Props {}
 
@@ -94,7 +97,7 @@ const IncomeStatement = (props: Props) => {
                />
             </>
          ) : (
-            <>Loading...</>
+            <Spinner />
          )}
       </>
    );
