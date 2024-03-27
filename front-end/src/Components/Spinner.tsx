@@ -1,5 +1,5 @@
 // add Props (isLoading), pass it with default value of true --LoadingSpinner ☑
-// add HTML Code --LoadingSpinner ☑s
+// add HTML Code --LoadingSpinner ☑
 // import CSS file ☑
 import "../assets/styles/Spinner.css"
 
