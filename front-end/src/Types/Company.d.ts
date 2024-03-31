@@ -308,3 +308,9 @@ export interface CompanySearch {
     dividendPerShareTTM: number;
     debtToMarketCapTTM: number;
   }
+
+  // CompanyCompData (symbol,peersList) --CompFinder ☑
+  export interface CompanyCompData{
+    symbol: string;
+    peersList: string[];
+  }

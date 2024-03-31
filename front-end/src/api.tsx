@@ -2,12 +2,12 @@ import axios from "axios";
 import {
    CompanyBalanceSheet,
    CompanyCashFlow,
+   CompanyCompData,
    CompanyIncomeStatement,
    CompanyKeyMetrics,
    CompanyProfile,
    CompanySearch,
 } from "./Types/Company";
-
 
 interface SearchResponse {
    data: CompanySearch[];
@@ -19,6 +19,8 @@ interface SearchResponse {
 // getBalanceSheetMethod CompanyBalanceSheet limit40 --BalanceSheet ☑
 
 // getCashFlowStatement CashFlowStatement cash-flow-statement limit40 --CashFlowStatement ☑
+
+// getComparableData ComparableData cash-flow-statement limit40 --CompFinder ☑
 export const searchCompanies = async (query: string) => {
    try {
       const data = await axios.get<SearchResponse>(
@@ -88,5 +90,16 @@ export const getCashFlowStatement = async (query: string) => {
       return data;
    } catch (e: any) {
       console.log("error message:", e.message);
+   }
+};
+// need Subscription to be available
+export const getComparableData = async (query: string) => {
+   try{
+      const data = await axios.get<CompanyCompData[]>(
+         `https://financialmodelingprep.com/api/v4/stock_peers?symbol=${query}&apikey=${process.env["REACT_APP_API_KEY"]}`
+      );
+      return data
+   } catch (e:any){
+      console.log("error message:", e.message)
    }
 };

@@ -11,6 +11,8 @@
 
 // add Spinner--LoadingSpinner ☑
 
+// add CompFinder --CompFinder ☑
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -21,6 +23,7 @@ import Sidebar from "../Components/Company/Sidebar";
 import CompanyDashboard from "../Components/Company/CompanyDashboard";
 import Tile from "../Components/Company/Tile";
 import Spinner from "../Components/Spinner";
+import CompFinder from "../Components/CompFinder/CompFinder";
 
 interface Props {}
 
@@ -57,6 +60,7 @@ const CompanyPage = (props: Props) => {
                      title="MKTCap"
                      subtitle={companyProfile.mktCap.toString()}
                   />
+                  <CompFinder ticker={companyProfile.symbol} />
                </CompanyDashboard>
             </div>
          ) : (
