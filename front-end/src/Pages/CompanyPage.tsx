@@ -13,7 +13,7 @@
 
 // add CompFinder --CompFinder ☑
 
-// add tenK --tenK ☑☑
+// add tenK --tenK ☑
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -53,15 +53,15 @@ const CompanyPage = (props: Props) => {
                   />
                   <Tile
                      title="Price"
-                     subtitle={companyProfile.price.toString()}
+                     subtitle={"$" + companyProfile.price.toString()}
+                  />
+                  <Tile
+                     title="DCF"
+                     subtitle={"$" + companyProfile.dcf.toString()}
                   />
                   <Tile
                      title="Sector"
                      subtitle={companyProfile.sector}
-                  />
-                  <Tile
-                     title="MKTCap"
-                     subtitle={companyProfile.mktCap.toString()}
                   />
                   <CompFinder ticker={companyProfile.symbol} />
                   <TenKFinder ticker={companyProfile.symbol} />
