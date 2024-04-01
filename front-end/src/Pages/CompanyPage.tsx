@@ -13,6 +13,8 @@
 
 // add CompFinder --CompFinder ☑
 
+// add tenK --tenK
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -24,6 +26,7 @@ import CompanyDashboard from "../Components/Company/CompanyDashboard";
 import Tile from "../Components/Company/Tile";
 import Spinner from "../Components/Spinner";
 import CompFinder from "../Components/CompFinder/CompFinder";
+import TenKFinder from "../Components/TenKFinder/TenKFinder";
 
 interface Props {}
 
@@ -61,6 +64,7 @@ const CompanyPage = (props: Props) => {
                      subtitle={companyProfile.mktCap.toString()}
                   />
                   <CompFinder ticker={companyProfile.symbol} />
+                  <TenKFinder ticker={companyProfile.symbol} />
                </CompanyDashboard>
             </div>
          ) : (

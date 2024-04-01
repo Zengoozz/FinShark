@@ -314,3 +314,14 @@ export interface CompanySearch {
     symbol: string;
     peersList: string[];
   }
+
+  // CompanyTenK (symbol,fillingDate, acceptedDate, cik, type, link, finalLink) --TenK ☑
+  export interface CompanyTenK{
+    symbol: string;
+    fillingDate: string;
+    acceptedDate: string;
+    cik: string;
+    type: string;
+    link: string;
+    finalLink: string;
+  }
