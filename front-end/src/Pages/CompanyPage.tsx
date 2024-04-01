@@ -13,7 +13,11 @@
 
 // add CompFinder --CompFinder ☑
 
+<<<<<<< HEAD
 // add tenK --tenK ☑
+=======
+// add tenK --tenK
+>>>>>>> 6a523f7f98e1733c2a3dc88c2a77e4bcf42a674f
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
