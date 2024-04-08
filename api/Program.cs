@@ -1,9 +1,23 @@
+using api.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container. -- initial ☑
+// Add DbContext to the builder container. -- EF ☑
+// Pass Options to the DbContext. -- EF ☑
+// Add Default_ConnectionString to the appSettingsJSON file. -- EF ☑
+// Data Source=DESKTOP-REGI9UC;Initial Catalog=finshark;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False ☑
+// api.csproj/InvariantGlobalization >> false --EF ☑
+// Migrations & Update -- EF 
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ApplicationDBContext>((options) => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 
