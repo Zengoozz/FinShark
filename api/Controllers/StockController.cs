@@ -21,7 +21,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var Stocks = _dataset.Select(s => s.ToStockDto()).ToList();
+            var Stocks = _dataset.Select(s => s.ToDto()).ToList();
             return Ok(Stocks);
         }
         [HttpGet("{id}")]
@@ -30,7 +30,7 @@ namespace api.Controllers
             var Stock = _dataset.Find(id);
             if (Stock != null)
             {
-                return Ok(Stock.ToStockDto());
+                return Ok(Stock.ToDto());
             }
             else
             {
@@ -42,10 +42,10 @@ namespace api.Controllers
         {
             try
             {
-                var stockModel = model.ToStockFromStockCreateDto();
+                var stockModel = model.ToEntity();
                 _dataset.Add(stockModel);
                 _context.SaveChanges();
-                return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToStockDto());
+                return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToDto());
             }
             catch (Exception)
             {

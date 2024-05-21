@@ -5,7 +5,7 @@ namespace api.Mapper
 {
     public static class StockMapper
     {
-        public static StockDto ToStockDto(this Stock model)
+        public static StockDto ToDto(this Stock model)
         {
             return new StockDto
             {
@@ -17,7 +17,7 @@ namespace api.Mapper
                 MarketCap = model.MarketCap
             };
         }
-        public static Stock ToStockFromStockCreateDto(this CreateStockRequestDto model)
+        public static Stock ToEntity(this CreateStockRequestDto model)
         {
             return new Stock
             {
