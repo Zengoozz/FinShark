@@ -1,20 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
 using api.Data;
+using api.Dtos.Stock;
+using api.Mapper;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace api.Controllers
 {
     [Route("api/stock")]
     [ApiController]
-    public class StockController : ControllerBase 
+    public class StockController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
         protected DbSet<Stock> _dataset;
@@ -26,7 +21,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var Stocks = _dataset.ToList();
+            var Stocks = _dataset.Select(s => s.ToStockDto()).ToList();
             return Ok(Stocks);
         }
         [HttpGet("{id}")]
@@ -35,12 +30,28 @@ namespace api.Controllers
             var Stock = _dataset.Find(id);
             if (Stock != null)
             {
-                return Ok(Stock);
+                return Ok(Stock.ToStockDto());
             }
             else
             {
                 return NotFound();
             }
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateStockRequestDto model)
+        {
+            try
+            {
+                var stockModel = model.ToStockFromStockCreateDto();
+                _dataset.Add(stockModel);
+                _context.SaveChanges();
+                return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToStockDto());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
 
