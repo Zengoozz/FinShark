@@ -22,5 +22,10 @@ namespace api.Repositories
         {
             return await _dataset.ToListAsync();
         }
+
+        public async Task<Comment?> GetByIdAsync(int id)
+        {
+            return await _dataset.FindAsync(id);
+        }
     }
 }

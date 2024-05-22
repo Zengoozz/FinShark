@@ -14,7 +14,8 @@ namespace api.Mapper
                 CompanyName = entity.CompanyName,
                 Purchase = entity.Purchase,
                 LastDiv = entity.LastDiv,
-                MarketCap = entity.MarketCap
+                MarketCap = entity.MarketCap,
+                Comments = entity.Comments.Select(comment => comment.ToDto()).ToList()
             };
         }
         public static Stock ToEntity(this CreateStockRequestDto model)
