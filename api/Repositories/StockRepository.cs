@@ -17,7 +17,7 @@ namespace api.Repositories
         public StockRepository(ApplicationDBContext context)
         {
             _context = context;
-            _dataset = _context.Stocks;
+            _dataset = context.Stocks;
         }
 
         public async Task<Stock> CreateAsync(Stock entity)
