@@ -10,5 +10,6 @@ namespace api.Interfaces
         Task<List<Stock>> GetAllAsync();
         Task<Stock?> GetByIdAsync(int id);
         Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto model);
+        Task<bool> CheckStockExistance(int id);
     }
 }

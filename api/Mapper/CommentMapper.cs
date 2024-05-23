@@ -17,5 +17,23 @@ namespace api.Mapper
                 StockId = entity.StockId
             };
         }
+        public static Comment ToEntityFromCreate(this CreateCommentDto model, int stockId)
+        {
+            return new Comment
+            {
+                Title = model.Title,
+                Content = model.Content,
+                StockId = stockId
+            };
+        }
+
+        public static Comment ToEntityFromUpdate(this UpdateCommentDto model)
+        {
+            return new Comment
+            {
+                Title = model.Title,
+                Content = model.Content
+            };
+        }
     }
 }

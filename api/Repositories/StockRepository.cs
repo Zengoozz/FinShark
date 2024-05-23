@@ -85,5 +85,10 @@ namespace api.Repositories
                 throw;
             }
         }
+
+        public async Task<bool> CheckStockExistance(int id)
+        {
+            return await _dataset.AnyAsync(stock => stock.Id == id);
+        }
     }
 }
