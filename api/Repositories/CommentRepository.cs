@@ -34,6 +34,15 @@ namespace api.Repositories
             }
         }
 
+        public async Task<Comment?> DeleteAsync(int id)
+        {
+            var entity = await _dataset.FindAsync(id);
+            if(entity == null) return entity;
+            _dataset.Remove(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+
         public async Task<List<Comment>> GetAllAsync()
         {
             return await _dataset.ToListAsync();
