@@ -38,7 +38,10 @@ namespace api.Repositories
         public async Task<Stock?> DeleteAsync(int id)
         {
             var entity = await _dataset.FirstOrDefaultAsync(stock => stock.Id == id);
-            if (entity == null) return entity;
+
+            if (entity == null)
+                return entity;
+
             try
             {
                 _dataset.Remove(entity);
@@ -65,7 +68,10 @@ namespace api.Repositories
         public async Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto model)
         {
             var entity = await _dataset.FirstOrDefaultAsync(stock => stock.Id == id);
-            if (entity == null) return entity;
+
+            if (entity == null)
+                return entity;
+
             try
             {
                 // _dataset.Update(entity);

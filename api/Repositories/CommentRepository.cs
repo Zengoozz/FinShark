@@ -26,6 +26,7 @@ namespace api.Repositories
             {
                 await _dataset.AddAsync(entity);
                 await _context.SaveChangesAsync();
+
                 return entity;
             }
             catch (Exception)
@@ -37,9 +38,12 @@ namespace api.Repositories
         public async Task<Comment?> DeleteAsync(int id)
         {
             var entity = await _dataset.FindAsync(id);
+
             if(entity == null) return entity;
+
             _dataset.Remove(entity);
             await _context.SaveChangesAsync();
+
             return entity;
         }
 
@@ -56,13 +60,16 @@ namespace api.Repositories
         public async Task<Comment?> UpdateAsync(int id, Comment entity)
         {
             var existEntity = await _dataset.FindAsync(id);
+
             if (existEntity == null) return existEntity;
+            
             try
             {
                 existEntity.Title = entity.Title;
                 existEntity.Content = entity.Content;
 
                 await _context.SaveChangesAsync();
+
                 return existEntity;
             }
             catch (Exception)
