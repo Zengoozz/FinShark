@@ -66,7 +66,14 @@ namespace api.Repositories
             if (!string.IsNullOrEmpty(query.CompanyName))
                 Stocks = Stocks.Where(stock => stock.CompanyName.Contains(query.CompanyName));
 
-            return await Stocks.ToListAsync();
+            if (!string.IsNullOrEmpty(query.SortBy))
+                if (query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                    Stocks = query.IsDesc ? Stocks.OrderByDescending(stock => stock.Symbol) : Stocks.OrderBy(stock => stock.Symbol);
+            
+            // Pagination
+            var SkipNumber = (query.PageNumber - 1) * query.PageSize;
+
+            return await Stocks.Skip(SkipNumber).Take(query.PageSize).ToListAsync();
         }
 
         public async Task<Stock?> GetByIdAsync(int id)
