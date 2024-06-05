@@ -4,13 +4,13 @@ using api.Models;
 using api.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region Tasks
 // Add services to the container. -- initial ☑
 // Add DbContext to the builder container. -- EF ☑
 // Pass Options to the DbContext. -- EF ☑
@@ -18,6 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Data Source=DESKTOP-REGI9UC;Initial Catalog=finshark;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False ☑
 // api.csproj/InvariantGlobalization >> false --EF ☑
 // Migrations & Update -- EF 
+#endregion
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();

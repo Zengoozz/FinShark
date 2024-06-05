@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-#region -- AppUser JWT
+#region -- AppUser JWT Tasks
 // Inherit From IdentityUser ☑
 // Inherit Our DBContext from IdentityDbContext with the new AppUser Obj -- ApplicationContext File ☑
 // Add Identity for the Model and the Identity Roles .. then add the restrictions -- Program File ☑
