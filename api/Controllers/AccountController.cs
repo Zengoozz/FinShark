@@ -4,6 +4,7 @@ using api.Models;
 using api.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 #region Register Tasks
 // Add Route, ApiController ☑
@@ -14,8 +15,13 @@ using Microsoft.AspNetCore.Mvc;
 // Create Register Method (CheckModelState, CreateNewUser) ☑
 #endregion
 
-#region Login Tasks
-// 
+#region Login Tasks 
+// Create Login Method ☑
+// Create Login Dto ☑
+// Check ModelState ☑
+// Find User using UserManager ☑
+// Check Password using SignInManager ☑
+// Add Swagger Configuration to Program File ☑
 #endregion
 
 namespace api.Controllers
@@ -26,12 +32,14 @@ namespace api.Controllers
     {
         private readonly UserManager<AppUser> _UserManager;
         private readonly ITokenService _TokenService;
-        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService)
+        private readonly SignInManager<AppUser> _SignInManager;
+        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService, SignInManager<AppUser> signInManager)
         {
             _UserManager = userManager;
             _TokenService = tokenService;
+            _SignInManager = signInManager;
         }
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto model)
         {
             try
@@ -73,6 +81,31 @@ namespace api.Controllers
             }
 
 
+        }
+        
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _UserManager.Users.FirstOrDefaultAsync(u => u.UserName == model.Username.ToLower());
+
+            if (user == null) 
+                 return Unauthorized("Username not found");
+
+            var response = await _SignInManager.CheckPasswordSignInAsync(user, model.Password, false);
+
+            if (!response.Succeeded)
+                return Unauthorized("Username and/or Password not valid");
+
+            return Ok(
+                new NewUserDto
+                {
+                    Username = user.UserName,
+                    Email = user.Email,
+                    Token = _TokenService.CreateToken(user)
+                });
         }
     }
 }
