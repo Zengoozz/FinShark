@@ -14,6 +14,7 @@ namespace api.Mapper
                 Title = entity.Title,
                 Content = entity.Content,
                 CreatedOn = entity.CreatedOn,
+                CreatedBy = entity.AppUser.UserName,
                 StockId = entity.StockId
             };
         }

@@ -44,12 +44,12 @@ namespace api.Repositories
 
         public async Task<List<Comment>> GetAllAsync()
         {
-            return await _dataset.ToListAsync();
+            return await _dataset.Include(c => c.AppUser).ToListAsync();
         }
 
         public async Task<Comment?> GetByIdAsync(int id)
         {
-            return await _dataset.FindAsync(id);
+            return await _dataset.Include(c => c.AppUser).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Comment?> UpdateAsync(int id, Comment entity)

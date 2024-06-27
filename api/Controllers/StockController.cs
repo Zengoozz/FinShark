@@ -1,12 +1,9 @@
-using api.Data;
 using api.Dtos.Stock;
 using api.Helpers;
 using api.Interfaces;
 using api.Mapper;
-using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {

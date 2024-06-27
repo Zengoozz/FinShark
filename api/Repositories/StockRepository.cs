@@ -57,7 +57,7 @@ namespace api.Repositories
 
         public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            var Stocks = _dataset.Include(stock => stock.Comments).AsQueryable();
+            var Stocks = _dataset.Include(stock => stock.Comments).ThenInclude(stock => stock.AppUser).AsQueryable();
 
             if (!string.IsNullOrEmpty(query.Symbol))
                 Stocks = Stocks.Where(stock => stock.Symbol.Contains(query.Symbol));
@@ -77,7 +77,7 @@ namespace api.Repositories
 
         public async Task<Stock?> GetByIdAsync(int id)
         {
-            return await _dataset.Include(stock => stock.Comments).FirstOrDefaultAsync(stock => stock.Id == id);
+            return await _dataset.Include(stock => stock.Comments).ThenInclude(stock => stock.AppUser).FirstOrDefaultAsync(stock => stock.Id == id);
         }
 
         public async Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto model)

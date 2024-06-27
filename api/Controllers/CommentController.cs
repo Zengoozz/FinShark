@@ -1,10 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+#region CreateCommentUser
+// Get User ☑
+// Add AppUserId ☑
+// Head to the repository and add include for getAll and get to include the appUser ☑
+// Head to the stock repo and add thenInclude for getAll and get to include the appUser ☑
+// Head to the commentDto and add the CreatedBy Attribute ☑
+// Head to the CommentMapper and add the createdBy ☑
+#endregion
+
 using api.Dtos.Comment;
+using api.Extensions;
 using api.Interfaces;
 using api.Mapper;
+using api.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -15,10 +23,12 @@ namespace api.Controllers
     {
         private readonly ICommentRepository _commentRepo;
         private readonly IStockRepository _stockRepo;
-        public CommentController(ICommentRepository commentRepository, IStockRepository stockRepository)
+        private readonly UserManager<AppUser> _userManager;
+        public CommentController(ICommentRepository commentRepository, IStockRepository stockRepository, UserManager<AppUser> userManager)
         {
             _commentRepo = commentRepository;
             _stockRepo = stockRepository;
+            _userManager = userManager;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -55,9 +65,15 @@ namespace api.Controllers
             if (!await _stockRepo.CheckStockExistanceAsync(stockId))
                 return BadRequest("Stock not found!");
 
-            var comment = await _commentRepo.CreateAsync(model.ToEntityFromCreate(stockId));
+            var username = User.GetUsername();
+            var appUser = await _userManager.FindByNameAsync(username);
+            
+            var commentModel = model.ToEntityFromCreate(stockId);
+            commentModel.AppUserId = appUser.Id;
 
-            return CreatedAtAction(nameof(GetById), new { id = comment.Id }, comment.ToDto());
+            await _commentRepo.CreateAsync(commentModel);
+            
+            return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToDto());
         }
 
         [HttpPut("{id:int}")]
