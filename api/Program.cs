@@ -1,5 +1,6 @@
 using api.Data;
 using api.Interfaces;
+using api.Interfaces.Repositories;
 using api.Models;
 using api.Repositories;
 using api.Services;
@@ -19,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add Default_ConnectionString to the appSettingsJSON file. -- EF ☑
 // Data Source=DESKTOP-REGI9UC;Initial Catalog=finshark;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False ☑
 // api.csproj/InvariantGlobalization >> false --EF ☑
-// Migrations & Update -- EF 
+// Migrations & Update -- EF ☑
 #endregion
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -85,7 +86,6 @@ builder.Services.AddAuthentication(options =>
     options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-#pragma warning disable CS8604 // Possible null reference argument.
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -96,11 +96,11 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])),
     };
 });
-#pragma warning restore CS8604 // Possible null reference argument.
 
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 
 var app = builder.Build();
 

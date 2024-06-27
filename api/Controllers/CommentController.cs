@@ -52,7 +52,7 @@ namespace api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (!await _stockRepo.CheckStockExistance(stockId))
+            if (!await _stockRepo.CheckStockExistanceAsync(stockId))
                 return BadRequest("Stock not found!");
 
             var comment = await _commentRepo.CreateAsync(model.ToEntityFromCreate(stockId));

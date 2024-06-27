@@ -12,8 +12,8 @@
 // Return token as string ☑
 // Edit signingKey for longer version ☑ 
 // Create NewUserDto with fields (Username, email, token) ☑ 
-// Inject the token service in Account Controller
-// return in success of register the newUserDto with the token creation
+// Inject the token service in Account Controller ☑
+// return in success of register the newUserDto with the token creation ☑
 #endregion
 
 using System.IdentityModel.Tokens.Jwt;

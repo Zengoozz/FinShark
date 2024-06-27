@@ -9,6 +9,8 @@ namespace api.Repositories
 {
     public class StockRepository : IStockRepository
     {
+        
+        #region Injection
         private readonly ApplicationDBContext _context;
         protected DbSet<Stock> _dataset;
         public StockRepository(ApplicationDBContext context)
@@ -16,6 +18,7 @@ namespace api.Repositories
             _context = context;
             _dataset = context.Stocks;
         }
+        #endregion
 
         public async Task<Stock> CreateAsync(Stock entity)
         {
@@ -65,7 +68,7 @@ namespace api.Repositories
             if (!string.IsNullOrEmpty(query.SortBy))
                 if (query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
                     Stocks = query.IsDesc ? Stocks.OrderByDescending(stock => stock.Symbol) : Stocks.OrderBy(stock => stock.Symbol);
-            
+
             // Pagination
             var SkipNumber = (query.PageNumber - 1) * query.PageSize;
 
@@ -104,9 +107,14 @@ namespace api.Repositories
             }
         }
 
-        public async Task<bool> CheckStockExistance(int id)
+        public async Task<bool> CheckStockExistanceAsync(int id)
         {
             return await _dataset.AnyAsync(stock => stock.Id == id);
+        }
+
+        public async Task<Stock?> GetBySymbolAsync(string symbol)
+        {
+            return await _dataset.FirstOrDefaultAsync(s => s.Symbol == symbol);
         }
     }
 }
